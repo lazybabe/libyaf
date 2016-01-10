@@ -1,0 +1,28 @@
+{
+    "require": {
+        "psr/log"                       : "*",
+        "monolog/monolog"               : "*",
+        "doctrine/dbal"                 : "*",
+        "pda/pheanstalk"                : "*",
+        "doctrine/mongodb-odm"          : "*",
+        "respect/validation"            : "*",
+        "egulias/email-validator"       : "*",
+        "guzzlehttp/guzzle"             : "*",
+        "codeguy/upload"                : "*",
+        "pagerfanta/pagerfanta"         : "*",
+        "swiftmailer/swiftmailer"       : "*",
+        "mobiledetect/mobiledetectlib"  : "*",
+        "phpoffice/phpexcel"            : "*",
+        "phpoffice/phpword"             : "*",
+        "geoip2/geoip2"                 : "*"
+    },
+    "repositories": [
+        {
+            "type"  : "composer",
+            "url"   : "http://packagist.phpcomposer.com"
+        },
+        {
+            "packagist" : false
+        }
+    ]
+}
