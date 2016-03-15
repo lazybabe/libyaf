@@ -53,7 +53,7 @@ class Conf
                 'logger'    => 'Required a logger instance of psr\log',
             ]));
             $errmsg = array_shift($errors);
-            throw new \Exception($errmsg);
+            throw new Exception($errmsg);
         }
 
 

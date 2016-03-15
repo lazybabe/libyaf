@@ -5,6 +5,7 @@ use Doctrine\MongoDB\Connection;
 use Doctrine\ODM\MongoDB\Configuration;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ODM\MongoDB\Mapping\Driver\AnnotationDriver;
+use Mongo\Exception;
 
 class ODM
 {
@@ -24,7 +25,7 @@ class ODM
 	    $mongoConfig = \Yaf\Application::app()->getConfig()->mongo->$name;
 
 	    if (! $mongoConfig) {
-	    	throw new \Exception('The mongo connection config "'.$name.'" not found.');
+	    	throw new Exception('The mongo connection config "'.$name.'" not found.');
 	    }
 
 	    self::$ins[$name] = new self($mongoConfig);
@@ -42,7 +43,7 @@ class ODM
 	    $ODMConfig = \Yaf\Application::app()->getConfig()->ODM;
 
 	    if (! $ODMConfig) {
-	    	throw new \Exception('The ODM config not found.');
+	    	throw new Exception('The ODM config not found.');
 	    }
 
 	    //连接mongodb

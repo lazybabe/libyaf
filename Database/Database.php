@@ -1,6 +1,7 @@
 <?php
 namespace Database;
 
+use Database\Exception;
 use Database\Logger;
 
 class Database 
@@ -24,13 +25,13 @@ class Database
         $config = isset($config) ? $config->$group : null;
 
         if (! isset($config)) {
-            throw new \Exception('Failed to load Database group: '.$group);
+            throw new Exception('Failed to load Database group: '.$group);
         }
 
         $driver = 'Database\\Driver\\'.$config->driver;
 
         if (! class_exists($driver)) {
-            throw new \Exception('Driver '.$driver.' not found.');
+            throw new Exception('Driver '.$driver.' not found.');
         }
 
         Database::$instances[$group] = (new $driver($config->toArray()))->getDatabaseDriver();

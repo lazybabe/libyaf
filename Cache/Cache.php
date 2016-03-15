@@ -1,6 +1,8 @@
 <?php
 namespace Cache;
 
+use Cache\Exception;
+
 class Cache
 {
     private static $instances = [];
@@ -22,13 +24,13 @@ class Cache
         $config = isset($allConfig->cache) ? $allConfig->cache->$group : null;
 
         if (! isset($config)) {
-            throw new \Exception('Failed to load Cache group: '.$group);
+            throw new Exception('Failed to load Cache group: '.$group);
         }
 
         $class = 'Cache\\Driver\\'.ucfirst($config->driver);
 
         if (! class_exists($class)) {
-            throw new \Exception('Driver '.$class.' not found.');
+            throw new Exception('Driver '.$class.' not found.');
         }
 
         $cache = (new $class($config))->getCacheDriver();

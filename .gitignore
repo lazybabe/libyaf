@@ -1,2 +1,4 @@
 vendor/**/.git
 *.swp
+cscope.out
+tags

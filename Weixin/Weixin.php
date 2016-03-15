@@ -1,6 +1,7 @@
 <?php
 namespace Weixin;
 
+use Weixin\Exception;
 use Weixin\Wechat;
 
 class Weixin
@@ -21,7 +22,7 @@ class Weixin
         $config = isset($config) ? $config->$group : null;
 
         if (! isset($config)) {
-        	throw new \Exception('Failed to load Weixin group: '.$group);
+        	throw new Exception('Failed to load Weixin group: '.$group);
         }
 
         $wechatConfig = [

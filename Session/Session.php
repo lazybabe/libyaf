@@ -1,6 +1,7 @@
 <?php
 namespace Session;
 
+use Session\Exception;
 use Logkit\Logger;
 
 abstract class Session
@@ -32,13 +33,13 @@ abstract class Session
         $config = \Yaf\Application::app()->getConfig()->session->$group;
 
         if (! isset($config)) {
-            throw new \Exception('Failed to load Session group: '.$group);
+            throw new Exception('Failed to load Session group: '.$group);
         }
 
         $class  = 'Session\\Driver\\'.ucfirst($config->driver);
 
         if (! class_exists($class)) {
-            throw new \Exception('Driver '.$class.' not found.');
+            throw new Exception('Driver '.$class.' not found.');
         }
 
         Session::$instances[$group] = $session = new $class($config->toArray(), $id);
@@ -141,7 +142,7 @@ abstract class Session
 
                 $data = unserialize($data);
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             Logger::ins('session')->error('Error reading session data.');
 
             return false;
@@ -165,7 +166,7 @@ abstract class Session
 
         try {
             return $this->_write();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             Logger::ins('session')->error($e->getMessage());
 
             return false;
