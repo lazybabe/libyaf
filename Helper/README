@@ -1,0 +1,13 @@
+application.ini
+
+cookie.salt                 = '***'
+cookie.expire               = 2592000
+cookie.path                 = '/'
+cookie.domain               = '.demo.com'
+cookie.secure               = false
+cookie.httponly             = false
+
+daemon.default.pid          = '/var/run/demo/'USER'/daemon.default.pid'
+daemon.default.worker       = 4
+daemon.default.user         = 'linux_username'
+daemon.default.group        = 'linux_group'

@@ -1,0 +1,7 @@
+application.ini
+
+cache.default.driver        = 'redis'
+cache.default.host          = '127.0.0.1'
+cache.default.port          = '6379'
+cache.default.username      = ''
+cache.default.password      = ''

@@ -1,0 +1,6 @@
+application.ini
+
+weixin.server.appID         = ''
+weixin.server.appSecret     = ''
+weixin.server.token         = ''
+weixin.server.aesKey        = ''

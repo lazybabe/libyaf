@@ -1,0 +1,12 @@
+application.ini
+
+ODM.proxiesDir                  = LIB_PATH"Proxies" 
+ODM.hydratorsDir                = LIB_PATH"Hydrators"
+ODM.documentsDir                = LIB_PATH"Documents"
+ 
+mongo.default.host              = '127.0.0.1'
+mongo.default.port              = '27017'
+mongo.default.username          = ''
+mongo.default.password          = ''
+mongo.default.options.timeout   = 3000
+ 

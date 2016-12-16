@@ -1,5 +1,5 @@
 <?php
-namespace Queue;
+namespace Kvs;
 
 class Exception extends \Exception
 {

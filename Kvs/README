@@ -1,0 +1,18 @@
+application.ini
+
+kvs.default.driver          = 'redis'
+kvs.default.host            = '127.0.0.1'
+kvs.default.port            = '6379'
+kvs.default.timeout         = 2
+kvs.default.persistent      = true
+kvs.default.database        = 9
+kvs.default.auth            = ''
+kvs.default.prefix          = ''
+;kvs.default.serializer      = 'php'
+
+kvs.ssdb.driver             = 'ssdb'
+kvs.ssdb.host               = '127.0.0.1'
+kvs.ssdb.port               = '8888'
+kvs.ssdb.timeout            = 2
+kvs.ssdb.auth               = ''
+

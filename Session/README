@@ -1,0 +1,7 @@
+application.ini
+
+session.default.driver      = 'cache'
+session.default.cache       = 'default'
+session.default.name        = 'PHPSESSION'
+session.default.lifetime    = '7200'
+session.default.encrypted   = false

@@ -18,6 +18,9 @@ class Security
      */
     public static function token()
     {
+        //生成token
+        $token = sha1(uniqid(null, true));
+
         //读取已存在token
         $exist = Session::ins()->get(self::TOKEN_NAME);
 
@@ -28,13 +31,13 @@ class Security
             array_shift($exist);
         }
 
-        //生成token
-        $token = sha1(uniqid(null, true));
-
         array_push($exist, $token);
 
         //保存token
         Session::ins()->set(self::TOKEN_NAME, $exist);
+
+        //立即写入session
+        Session::ins()->write();
 
         return $token;
     }

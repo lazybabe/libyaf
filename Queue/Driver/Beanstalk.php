@@ -23,20 +23,18 @@ class Beanstalk extends AbstractDriver implements DriverInterface
         return $id;
     }
 
-    public function pull($name, callable $callback)
+    public function pull($name, callable $callback, $timeout = null)
     {
-        $job    = $this->instance->watch($name)->reserve();
+        $job    = $this->instance->watch($name)->reserve($timeout);
+
+        if ($timeout !== null && $job === false) {
+            return true;
+        }
 
         $data   = $job->getData();
 
         try {
             call_user_func($callback, $data);
-
-            $this->instance->delete($job);
-
-            $this->logger->info('[delete] '.json_encode(['id'=>$job->getId(), 'data'=>$data]));
-
-            return true;
         } catch (\Exception $e) {
             $this->instance
                 ->release($job, Pheanstalk::DEFAULT_PRIORITY, self::EXCEPTION_DELAY);
@@ -45,6 +43,12 @@ class Beanstalk extends AbstractDriver implements DriverInterface
 
             return false;
         }
+
+        $this->instance->delete($job);
+
+        $this->logger->info('[delete] '.json_encode(['id'=>$job->getId(), 'data'=>$data]));
+
+        return true;
     }
 
     public function delay($name, $message, $seconds)

@@ -1,0 +1,7 @@
+application.ini
+
+queue.default.driver        = 'beanstalk'
+queue.default.host          = '127.0.0.1'
+queue.default.port          = '11300'
+queue.default.timeout       = '3.0'
+queue.default.persistent    = false

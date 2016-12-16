@@ -1,0 +1,4 @@
+application.ini
+
+log.filepath                = 'filepath'
+log.level                   = 'debug'

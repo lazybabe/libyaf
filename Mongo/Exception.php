@@ -1,7 +1,7 @@
 <?php
 namespace Mongo;
 
-class Exception extends \Yaf\Exception
+class Exception extends \Exception
 {
 
 }

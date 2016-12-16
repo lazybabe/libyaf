@@ -4,9 +4,11 @@ namespace Database;
 use Database\Exception;
 use Database\Logger;
 
-class Database 
+class Database
 {
     private static $instances = [];
+
+    private static $drivers = [];
 
     private static $default = 'default';
 
@@ -34,7 +36,8 @@ class Database
             throw new Exception('Driver '.$driver.' not found.');
         }
 
-        Database::$instances[$group] = (new $driver($config->toArray()))->getDatabaseDriver();
+        Database::$drivers[$group]      = new $driver($config->toArray()); 
+        Database::$instances[$group]    = Database::$drivers[$group]->getDatabaseDriver();
 
         Database::$instances[$group]->getConfiguration()->setSQLLogger(new Logger($group));
 
@@ -44,6 +47,17 @@ class Database
     private function __construct()
     {
 
+    }
+
+    public static function ping($group = null)
+    {
+        if (! isset($group)) {
+            $group = Database::$default;
+        }
+
+        if (isset(Database::$drivers[$group])) {
+            Database::$drivers[$group]->ping();
+        }
     }
 
 }

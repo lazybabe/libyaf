@@ -1,0 +1,9 @@
+application.ini
+
+database.default.driver     = 'PDOMysql'
+database.default.host       = '127.0.0.1'
+database.default.port       = '3306'
+database.default.username   = 'username'
+database.default.password   = 'password'
+database.default.dbname     = 'demo_'USER
+database.default.charset    = 'utf8'

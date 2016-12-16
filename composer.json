@@ -14,12 +14,15 @@
         "mobiledetect/mobiledetectlib"  : "*",
         "phpoffice/phpexcel"            : "*",
         "phpoffice/phpword"             : "*",
-        "geoip2/geoip2"                 : "*"
+        "geoip2/geoip2"                 : "*",
+        "workerman/workerman"           : "*",
+        "workerman/channel"             : "*",
+        "textalk/websocket"             : "*"
     },
     "repositories": [
         {
             "type"  : "composer",
-            "url"   : "http://packagist.phpcomposer.com"
+            "url"   : "https://packagist.phpcomposer.com"
         },
         {
             "packagist" : false

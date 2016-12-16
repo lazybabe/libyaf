@@ -30,5 +30,20 @@ class PDOMysql implements Driver
     {
         return $this->instance;
     }
+
+    public function ping()
+    {
+        try {
+            @$this->instance->getWrappedConnection()->getAttribute(\PDO::ATTR_SERVER_INFO);
+        } catch (\PDOException $e) {
+            if ($e->getCode() == 'HY000') {
+                $this->instance->close();
+                $this->instance->connect();
+            } else {
+                throw $e;
+            }
+        }
+    }
+
 }
 

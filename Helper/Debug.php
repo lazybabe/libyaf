@@ -14,7 +14,7 @@ class Debug
     {
         $isCli  = \Yaf\Dispatcher::getInstance()->getRequest()->isCli();
 
-        echo $isCli ? '' : '<br>';
+        echo $isCli ? PHP_EOL : '<br>';
         echo '*****************************DEBUG::VARS******************************';
         echo $isCli ? PHP_EOL : '<br>'.PHP_EOL;
         echo $isCli ? '' : '<pre>'.PHP_EOL;

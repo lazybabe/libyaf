@@ -1,5 +1,5 @@
 <?php
-namespace Queue\Driver;
+namespace Kvs\Driver;
 
 interface DriverInterface
 {
