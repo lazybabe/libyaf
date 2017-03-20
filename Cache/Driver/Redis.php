@@ -2,9 +2,8 @@
 namespace Cache\Driver;
 
 use Doctrine\Common\Cache as DC;
-use Cache\Driver;
 
-class Redis implements Driver
+class Redis implements DriverInterface
 {
     private $instance;
 
@@ -12,6 +11,10 @@ class Redis implements Driver
     {
         $this->instance = new \Redis();
         $this->instance->connect($config->host, $config->port);
+
+        if (isset($config->dbnum)) {
+            $this->instance->select(intval($config->dbnum));
+        }
     }
 
     public function getCacheDriver()

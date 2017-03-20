@@ -2,8 +2,6 @@
 namespace Logkit;
 
 use Monolog\Logger as MonoLogger;
-use Monolog\Handler\SyslogHandler;
-use Monolog\Formatter\LineFormatter;
 use Monolog\Processor\ProcessIdProcessor;
 use Monolog\Processor\PsrLogMessageProcessor;
 use Logkit\Exception;
@@ -45,16 +43,21 @@ class Logger
 
         $logger     = new MonoLogger($space);
 
-        $syslog     = new SyslogHandler($channel, LOG_LOCAL6, self::$logLevels[$config->log->level]);
-        $syslogAll  = new SyslogHandler($channelAll, LOG_LOCAL6, self::$logLevels[$config->log->level]);
+        $class = 'Logkit\\Driver\\'.ucfirst($config->log->driver);
 
-        //设置日志格式
-        $formatter  = new LineFormatter("%channel% %level_name%: %message% %context% %extra%");
-        $syslog->setFormatter($formatter);
-        $syslogAll->setFormatter($formatter);
+        if (! class_exists($class)) {
+            throw new Exception('Driver '.$class.' not found.');
+        }
 
-        $logger->pushHandler($syslog);
-        $logger->pushHandler($syslogAll);
+        $driver     = new $class($config->log);
+
+        $level      = self::$logLevels[$config->log->level];
+
+        $handler    = $driver->getLoggerDriver($channel, $level);
+        $handlerAll = $driver->getLoggerDriver($channelAll, $level);
+
+        $logger->pushHandler($handler);
+        $logger->pushHandler($handlerAll);
 
         //增加pid
         $processor  = new ProcessIdProcessor();

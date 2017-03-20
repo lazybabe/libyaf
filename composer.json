@@ -1,6 +1,5 @@
 {
     "require": {
-        "psr/log"                       : "*",
         "monolog/monolog"               : "*",
         "doctrine/dbal"                 : "*",
         "pda/pheanstalk"                : "*",
@@ -17,7 +16,9 @@
         "geoip2/geoip2"                 : "*",
         "workerman/workerman"           : "*",
         "workerman/channel"             : "*",
-        "textalk/websocket"             : "*"
+        "textalk/websocket"             : "*",
+        "elasticsearch/elasticsearch"   : "*",
+        "ongr/elasticsearch-dsl"        : "*"
     },
     "repositories": [
         {
@@ -27,5 +28,6 @@
         {
             "packagist" : false
         }
-    ]
+    ],
+    "optimize-autoloader": true
 }

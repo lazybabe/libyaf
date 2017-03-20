@@ -1,4 +1,5 @@
 application.ini
 
+log.driver                  = 'file'
 log.filepath                = 'filepath'
 log.level                   = 'debug'

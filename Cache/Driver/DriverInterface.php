@@ -1,7 +1,7 @@
 <?php
-namespace Cache;
+namespace Cache\Driver;
 
-interface Driver
+interface DriverInterface
 {
 	public function __construct($config);
 
