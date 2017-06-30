@@ -3,6 +3,7 @@ namespace Session;
 
 use Session\Exception;
 use Logkit\Logger;
+use Helper\Encrypt;
 
 abstract class Session
 {
@@ -14,7 +15,7 @@ abstract class Session
 
     protected $lifetime = 0;
 
-    protected $encrypted = false;
+    protected $encrypt = null;
 
     protected $data = [];
 
@@ -52,19 +53,15 @@ abstract class Session
     protected function __construct(array $config, $id)
     {
         if (isset($config['name'])) {
-            $this->name = (string) $config['name'];
+            $this->name = $config['name'];
         }
 
         if (isset($config['lifetime'])) {
             $this->lifetime = (int) $config['lifetime'];
         }
 
-        if (isset($config['encrypted'])) {
-            if ($config['encrypted'] === TRUE) {
-                $config['encrypted'] = 'default';
-            }
-
-            $this->encrypted = $config['encrypted'];
+        if (isset($config['encrypt'])) {
+            $this->encrypt = $config['encrypt'];
         }
 
         $this->read($id);
@@ -74,9 +71,8 @@ abstract class Session
     {
         $data = serialize($this->data);
 
-        if ($this->encrypted) {
-            //todo encrypt
-            $data = base64_encode($data);
+        if ($this->encrypt) {
+            $data = Encrypt::ins($this->encrypt)->encode($data);
         } else {
             $data = base64_encode($data);
         }
@@ -133,9 +129,8 @@ abstract class Session
             $data = $this->_read($id);
 
             if (is_string($data)) {
-                if ($this->encrypted) {
-                    //todo encrypt
-                    $data = base64_decode($data);
+                if ($this->encrypt) {
+                    $data = Encrypt::ins($this->encrypt)->decode($data);
                 } else {
                     $data = base64_decode($data);
                 }
@@ -143,7 +138,7 @@ abstract class Session
                 $data = unserialize($data);
             }
         } catch (Exception $e) {
-            Logger::ins('session')->error('Error reading session data.');
+            Logger::ins('_session')->error('Error reading session data.');
 
             return false;
         }
@@ -167,7 +162,7 @@ abstract class Session
         try {
             return $this->_write();
         } catch (Exception $e) {
-            Logger::ins('session')->error($e->getMessage());
+            Logger::ins('_session')->error($e->getMessage());
 
             return false;
         }
@@ -175,7 +170,7 @@ abstract class Session
 
     public function destroy()
     {
-        if ($this->destroyed === FALSE) {
+        if ($this->destroyed === false) {
             if ($this->destroyed = $this->_destroy()) {
                 $this->data = [];
             }
@@ -186,11 +181,11 @@ abstract class Session
 
     public function restart()
     {
-        if ($this->destroyed === FALSE) {
+        if ($this->destroyed === false) {
             $this->destroy();
         }
 
-        $this->destroyed = FALSE;
+        $this->destroyed = false;
 
         return $this->_restart();
     }

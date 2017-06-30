@@ -18,8 +18,8 @@ session.default.name        = 'MYSESSION'
 ; session有效时间
 session.default.lifetime    = 7200
 
-; session是否加密
-session.default.encrypted   = false
+; session加密组
+session.default.encrypt     = 'default'
 ```
 
 ## 如何使用
