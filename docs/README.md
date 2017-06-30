@@ -33,6 +33,7 @@ yaf.library = "/home/you/devspace/libyaf"
   - [Daemon](https://github.com/qinyuguang/libyaf/blob/master/docs/Helper_Daemon.md)
   - [Datetime](https://github.com/qinyuguang/libyaf/blob/master/docs/Helper_Datetime.md)
   - [Debug](https://github.com/qinyuguang/libyaf/blob/master/docs/Helper_Debug.md)
+  - [Encrypt](https://github.com/qinyuguang/libyaf/blob/master/docs/Helper_Encrypt.md)
   - [Security](https://github.com/qinyuguang/libyaf/blob/master/docs/Helper_Security.md)
   - [Text](https://github.com/qinyuguang/libyaf/blob/master/docs/Helper_Text.md)
   - [Url](https://github.com/qinyuguang/libyaf/blob/master/docs/Helper_Url.md)
