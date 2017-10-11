@@ -30,7 +30,7 @@ class Database
             throw new Exception('Failed to load Database group: '.$group);
         }
 
-        $driver = 'Database\\Driver\\'.$config->driver;
+        $driver = 'Libyaf\\Database\\Driver\\'.$config->driver;
 
         if (! class_exists($driver)) {
             throw new Exception('Driver '.$driver.' not found.');

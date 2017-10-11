@@ -1,7 +1,7 @@
 <?php
 namespace Libyaf\Weixin;
 
-class ErrorCode
+class Error
 {
     public static $errorCode = array(
         '-1'        => '系统繁忙',
@@ -122,7 +122,7 @@ class ErrorCode
         '7000036'   => 'utf8 编码转换失败',
     );
 
-    public static function getErrText($code)
+    public static function getText($code)
     {
         if (isset(self::$errorCode[$code])) {
             return self::$errorCode[$code];

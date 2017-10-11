@@ -28,7 +28,7 @@ class Queue
             throw new Exception('Failed to load Queue group: '.$group);
         }
 
-        $driver = 'Queue\\Driver\\'.ucfirst($config->driver);
+        $driver = 'Libyaf\\Queue\\Driver\\'.ucfirst($config->driver);
 
         if (! class_exists($driver)) {
             throw new Exception('Driver '.$driver.' not found.');

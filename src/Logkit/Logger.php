@@ -43,7 +43,7 @@ class Logger
 
         $logger     = new MonoLogger($space);
 
-        $class = 'Logkit\\Driver\\'.ucfirst($config->log->driver);
+        $class = 'Libyaf\\Logkit\\Driver\\'.ucfirst($config->log->driver);
 
         if (! class_exists($class)) {
             throw new Exception('Driver '.$class.' not found.');

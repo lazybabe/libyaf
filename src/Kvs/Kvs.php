@@ -28,7 +28,7 @@ class Kvs
             throw new Exception('Failed to load Kvs group: '.$group);
         }
 
-        $driver = 'Kvs\\Driver\\'.ucfirst($config->driver);
+        $driver = 'Libyaf\\Kvs\\Driver\\'.ucfirst($config->driver);
 
         if (! class_exists($driver)) {
             throw new Exception('Driver '.$driver.' not found.');

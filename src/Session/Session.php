@@ -37,7 +37,7 @@ abstract class Session
             throw new Exception('Failed to load Session group: '.$group);
         }
 
-        $class  = 'Session\\Driver\\'.ucfirst($config->driver);
+        $class  = 'Libyaf\\Session\\Driver\\'.ucfirst($config->driver);
 
         if (! class_exists($class)) {
             throw new Exception('Driver '.$class.' not found.');
