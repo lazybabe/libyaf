@@ -1,9 +1,21 @@
 {
+    "name": "qinyuguang/libyaf",
+    "description": "Library for YAF",
+    "keywords": ["yaf","library"],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "qinyuguang",
+            "email": "99756605@qq.com"
+        }
+    ],
     "require": {
         "codeguy/upload"                : "*",
         "egulias/email-validator"       : "*",
         "elasticsearch/elasticsearch"   : "*",
         "geoip2/geoip2"                 : "*",
+        "gregwar/captcha"               : "*",
         "guzzlehttp/guzzle"             : "*",
         "doctrine/annotations"          : "*",
         "doctrine/dbal"                 : "*",
@@ -21,21 +33,9 @@
         "workerman/channel"             : "*",
         "workerman/workerman"           : "*"
     },
-    "repositories": [
-        {
-            "type"  : "composer",
-            "url"   : "https://packagist.phpcomposer.com"
-        },
-        {
-            "packagist" : false
+    "autoload": {
+        "psr-4": {
+            "Libyaf\\": "./"
         }
-    ],
-    "scripts": {
-        "post-install-cmd": [
-            "composer dump-autoload -o"
-        ],
-        "post-update-cmd": [
-            "composer dump-autoload -o"
-        ]
     }
 }

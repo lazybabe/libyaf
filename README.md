@@ -1,7 +1,5 @@
-## 安装步骤
-1. git clone git@github.com:qinyuguang/libyaf.git
-2. 安装 <a href="https://getcomposer.org/" target="_blank">composer</a>
-3. libyaf目录下执行composer install来安装vendor
+## 安装
+composer require qinyuguang/libyaf
 
 
 ## 文档
