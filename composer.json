@@ -12,26 +12,14 @@
     ],
     "require": {
         "codeguy/upload"                : "*",
-        "egulias/email-validator"       : "*",
-        "elasticsearch/elasticsearch"   : "*",
         "geoip2/geoip2"                 : "*",
-        "gregwar/captcha"               : "*",
         "guzzlehttp/guzzle"             : "*",
-        "doctrine/annotations"          : "*",
         "doctrine/dbal"                 : "*",
         "doctrine/mongodb-odm"          : "*",
-        "mobiledetect/mobiledetectlib"  : "*",
         "monolog/monolog"               : "*",
-        "ongr/elasticsearch-dsl"        : "*",
         "pagerfanta/pagerfanta"         : "*",
         "pda/pheanstalk"                : "*",
-        "phpoffice/phpexcel"            : "*",
-        "phpoffice/phpword"             : "*",
-        "respect/validation"            : "*",
-        "swiftmailer/swiftmailer"       : "*",
-        "textalk/websocket"             : "*",
-        "workerman/channel"             : "*",
-        "workerman/workerman"           : "*"
+        "respect/validation"            : "*"
     },
     "autoload": {
         "psr-4": {
