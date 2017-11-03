@@ -15,7 +15,6 @@
         "geoip2/geoip2"                 : "*",
         "guzzlehttp/guzzle"             : "*",
         "doctrine/dbal"                 : "*",
-        "doctrine/mongodb-odm"          : "*",
         "monolog/monolog"               : "*",
         "pagerfanta/pagerfanta"         : "*",
         "pda/pheanstalk"                : "*",

@@ -3,4 +3,4 @@ vendor/**/.git
 cscope.out
 tags
 composer.lock
-vendor/
+vendor
