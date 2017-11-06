@@ -89,6 +89,7 @@ class Follow
 ```php
 <?php
 use Documents\Follow;
+use Libyaf\Mongo\ODM;
 
 class FollowModel
 {
@@ -100,7 +101,7 @@ class FollowModel
         $follow->setPos($pos);
         $follow->setCount(1);
 
-        $dm = Mongo\ODM::ins()->getDocumentManager();
+        $dm = ODM::ins()->getDocumentManager();
         $dm->persist($follow);
         $dm->flush();
 
@@ -115,7 +116,7 @@ class FollowModel
             return $result ? true : false;
         }
 
-        $result = Mongo\ODM::ins()
+        $result = ODM::ins()
             ->getDocumentManager()
             ->createQueryBuilder('Documents\Follow')
             ->update()

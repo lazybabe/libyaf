@@ -5,8 +5,8 @@
 对基础URI、请求超时、代理、认证、日志进行配置
 ```php
 <?php
-use Sdk\Base\Conf;
-use Logkit\Logger;
+use Libyaf\Sdk\Base\Conf;
+use Libyaf\Logkit\Logger;
 
 $options = [
     'baseUri'   => 'http://api.sign.com',           //基础URI
@@ -22,7 +22,7 @@ $conf = new Conf($options);
 HTTP Client，可以自定义头信息和cookie，HTTP方法支持GET、POST、PUT等
 ```php
 <?php
-use Sdk\Base\Client;
+use Libyaf\Sdk\Base\Client;
 
 $caller = '****';
 $client = new Client($conf, $caller);

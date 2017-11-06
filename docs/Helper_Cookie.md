@@ -18,7 +18,7 @@ cookie.httponly             = false
 **Bootstrap.php**
 ```php
 <?php
-use Helper\Cookie;
+use Libyaf\Helper\Cookie;
 class Bootstrap extends Yaf\Bootstrap_Abstract
 {
     public function _initCookie($dispatcher)

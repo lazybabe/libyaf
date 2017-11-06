@@ -25,7 +25,7 @@ session.default.encrypt     = 'default'
 ## 如何使用
 ```php
 <?php
-use Session\Session;
+use Libyaf\Session\Session;
 
 $session = Session::ins();
 

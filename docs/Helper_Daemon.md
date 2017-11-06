@@ -23,7 +23,7 @@ daemon.default.group        = 'qinyuguang'
 ## 如何使用
 ```php
 <?php
-use Helper\Daemon;
+use Libyaf\Helper\Daemon;
 
 $config = Yaf\Registry::get('config')->daemon->default->toArray();
 

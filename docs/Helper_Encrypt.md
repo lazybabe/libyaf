@@ -17,7 +17,7 @@ encrypt.default.cipher   = MCRYPT_RIJNDAEL_128
 ## 如何使用
 ```php
 <?php
-use Helper\Encrypt;
+use Libyaf\Helper\Encrypt;
 
 $encrypt = Encrypt::ins();
 

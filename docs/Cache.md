@@ -26,7 +26,7 @@ cache.master.password      = ''
 ## 如何使用
 ```php
 <?php
-use Cache\Cache;
+use Libyaf\Cache\Cache;
 
 //使用默认cache组，Cache::ins()等于Cache::ins('default')
 $value = Cache::ins()->fetch('value');

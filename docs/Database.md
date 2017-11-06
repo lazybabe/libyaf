@@ -31,7 +31,7 @@ database.slave.charset      = 'utf8'
 ## 如何使用
 ```php
 <?php
-use Database\Database;
+use Libyaf\Database\Database;
 
 //Query Builder方式构建查询
 $data = Database::ins()

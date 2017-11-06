@@ -36,7 +36,7 @@ log.filepath    = '/data/logs/project'
 ## 如何使用
 ```php
 <?php
-use Logkit\Logger;
+use Libyaf\Logkit\Logger;
 
 //test作为namespace，syslog-ng切割时，作为二级目录名
 $logger = Logger::ins('test');

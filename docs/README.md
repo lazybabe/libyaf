@@ -6,22 +6,8 @@
 
 > 用yaf框架做服务化应用时，各服务使用统一的基础工具，可以有效降低开发和维护的成本
 
-## 配置
-使用libyaf，可以在php.ini中进行如下的简单配置即可
-
-```ini
-; libyaf遵循PSR4规范，可以配置include_path进行autoload，开发环境可以配置为自己clone的libyaf目录
-include_path="/home/you/devspace/libyaf"
-
-[yaf]
-extension = yaf.so
-; yaf环境标识
-yaf.environ = "dev"
-; 使用命名空间
-yaf.use_namespace = 1
-; 同时也配置yaf的library目录
-yaf.library = "/home/you/devspace/libyaf"
-```
+## 安装
+composer require qinyuguang/libyaf
 
 ## 目录
 - [Cache](https://github.com/qinyuguang/libyaf/blob/master/docs/Cache.md)

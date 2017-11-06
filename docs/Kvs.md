@@ -28,7 +28,7 @@ kvs.ssdb.auth               = ''
 ## 如何使用
 ```php
 <?php
-use Kvs\Kvs;
+use Libyaf\Kvs\Kvs;
 
 $result = Kvs::ins()->set('name', 'qinyuguang');
 $result = Kvs::ins()->get('name', 'qinyuguang');

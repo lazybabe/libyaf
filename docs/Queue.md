@@ -14,7 +14,7 @@ queue.default.persistent    = false
 ## 如何使用
 ```php
 <?php
-use Queue\Queue;
+use Libyaf\Queue\Queue;
 
 //产生消息
 Queue::ins()->push('queue_name', 'message content');
