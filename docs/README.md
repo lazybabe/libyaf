@@ -24,6 +24,7 @@ composer require qinyuguang/libyaf
   - [Text](https://github.com/qinyuguang/libyaf/blob/master/docs/Helper_Text.md)
   - [Url](https://github.com/qinyuguang/libyaf/blob/master/docs/Helper_Url.md)
 - [Kvs](https://github.com/qinyuguang/libyaf/blob/master/docs/Kvs.md)
+- [Limiter](https://github.com/qinyuguang/libyaf/blob/master/docs/Limiter.md)
 - [Logkit](https://github.com/qinyuguang/libyaf/blob/master/docs/Logkit.md)
 - [Mongo](https://github.com/qinyuguang/libyaf/blob/master/docs/Mongo.md)
 - [Queue](https://github.com/qinyuguang/libyaf/blob/master/docs/Queue.md)
