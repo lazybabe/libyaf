@@ -20,7 +20,7 @@ class Sms extends Base\Client
         $params     = [
             'numbers'   => $numbers,
             'template'  => $template,
-            'context'   => $context,
+            'context'   => json_encode($context),
             'group'     => $group,
         ];
 
