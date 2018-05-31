@@ -15,7 +15,7 @@ class Sms extends Base\Client
      */
     public function send($number, $template, $context, $group)
     {
-        $numbers    = is_array($number) ? $number : [$number];
+        $numbers    = is_array($number) ? implode(',', $number) : $number;
 
         $params     = [
             'numbers'   => $numbers,
