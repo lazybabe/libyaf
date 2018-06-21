@@ -33,6 +33,8 @@ class Cookie {
             }
 
             Cookie::delete($key);
+        } else {
+            return $cookie;
         }
 
         return $default;
