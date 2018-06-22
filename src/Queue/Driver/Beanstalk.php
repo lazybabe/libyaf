@@ -39,6 +39,7 @@ class Beanstalk extends AbstractDriver implements DriverInterface
             $this->instance
                 ->release($job, Pheanstalk::DEFAULT_PRIORITY, self::EXCEPTION_DELAY);
 
+            $this->logger->error($e->getMessage());
             $this->logger->info('[release] '.serialize($job).' [delay] '.self::EXCEPTION_DELAY.'(s)');
 
             return false;
