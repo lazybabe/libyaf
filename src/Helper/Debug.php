@@ -4,11 +4,11 @@ namespace Libyaf\Helper;
 class Debug
 {
     /**
-        * @brief 调试输出变量
-        *
-        * @param ...$params
-        *
-        * @return void
+     * @brief 调试输出变量
+     *
+     * @param ...$params
+     *
+     * @return void
      */
     public static function vars(...$params)
     {

@@ -5,3 +5,10 @@ queue.default.host          = '127.0.0.1'
 queue.default.port          = '11300'
 queue.default.timeout       = '3.0'
 queue.default.persistent    = false
+
+queue.kafka.driver          = 'kafka'
+queue.kafka.brokers         = 'kafka:9092'
+queue.kafka.topics          = 'test'
+queue.kafka.group           = 'test'
+queue.kafka.refresh_ms      = '10000'
+queue.kafka.version         = '1.0.0'

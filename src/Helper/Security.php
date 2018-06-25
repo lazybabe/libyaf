@@ -12,9 +12,9 @@ class Security
     const TOKEN_NAME    = 'securityToken';
 
     /**
-        * @brief 生成一个有效token，并存入session
-        *
-        * @return string
+     * @brief 生成一个有效token，并存入session
+     *
+     * @return string
      */
     public static function token()
     {
@@ -43,11 +43,11 @@ class Security
     }
 
     /**
-        * @brief 校验是否有效token
-        *
-        * @param $token string 待检查token
-        *
-        * @return boolean
+     * @brief 校验是否有效token
+     *
+     * @param $token string 待检查token
+     *
+     * @return boolean
      */
     public static function check($token)
     {

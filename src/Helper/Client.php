@@ -13,11 +13,11 @@ class Client
     ];
 
     /**
-        * @brief 获取客户端IP
-        *
-        * @param $from  string  指定header名的值作为客户端IP
-        *
-        * @return string
+     * @brief 获取客户端IP
+     *
+     * @param $from  string  指定header名的值作为客户端IP
+     *
+     * @return string
      */
     public static function getIp($from = null)
     {
@@ -59,11 +59,11 @@ class Client
     }
 
     /**
-        * @brief 使用GeoIp查询客户端国家、城市
-        *
-        * @param $ip    string  IP地址
-        *
-        * @return array
+     * @brief 使用GeoIp查询客户端国家、城市
+     *
+     * @param $ip    string  IP地址
+     *
+     * @return array
      */
     public static function getCity($ip)
     {
@@ -89,12 +89,12 @@ class Client
     }
 
     /**
-        * @brief 网络匹配,支持CIDR掩码
-        *
-        * @param $ip    string  IP
-        * @param $cidr  string  IP或CIDR
-        *
-        * @return boolean
+     * @brief 网络匹配,支持CIDR掩码
+     *
+     * @param $ip    string  IP
+     * @param $cidr  string  IP或CIDR
+     *
+     * @return boolean
      */
     public static function netMatch($ip, $cidr)
     {

@@ -9,6 +9,13 @@ queue.default.host          = '127.0.0.1'
 queue.default.port          = '11300'
 queue.default.timeout       = '3.0'
 queue.default.persistent    = false
+
+queue.kafka.driver          = 'kafka'
+queue.kafka.brokers         = 'kafka:9092'
+queue.kafka.topics          = 'test'
+queue.kafka.group           = 'test'
+queue.kafka.refresh_ms      = '10000'
+queue.kafka.version         = '1.0.0'
 ```
 
 ## 如何使用
@@ -26,10 +33,10 @@ $callback = function ($data) {
 };
 Queue::ins()->pull('queue_name', $callback);
 
-//产生延迟消息，10秒后加入队列
+//产生延迟消息，10秒后加入队列（beanstalkd支持）
 Queue::ins()->delay('queue_name', 'message content', 10);
 
-//获取队列当前长度
+//获取队列当前长度（beanstalkd支持）
 Queue::ins()->size('queue_name');
 ```
 
@@ -38,6 +45,6 @@ Queue::ins()->size('queue_name');
 
 - **pull**
 
-- **delay**
+- **delay（部分支持）**
 
-- **size**
+- **size（部分支持）**

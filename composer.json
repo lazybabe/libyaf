@@ -11,13 +11,9 @@
         }
     ],
     "require": {
-        "codeguy/upload"                : "*",
-        "geoip2/geoip2"                 : "*",
         "guzzlehttp/guzzle"             : "*",
         "doctrine/dbal"                 : "*",
         "monolog/monolog"               : "*",
-        "pagerfanta/pagerfanta"         : "*",
-        "pda/pheanstalk"                : "*",
         "respect/validation"            : "*"
     },
     "autoload": {
