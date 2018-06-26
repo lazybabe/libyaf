@@ -33,8 +33,12 @@ class User extends Base\Client
      *
      * @return array
      */
-    public function captcha($phoneNumber, $sessionId)
+    public function captcha($phoneNumber, $sessionId = '')
     {
+        if (! $sessionId) {
+            $sessionId = $this->getSessionId();
+        }
+
         if (! $phoneNumber || ! $sessionId) {
             return [];
         }
@@ -59,8 +63,12 @@ class User extends Base\Client
      *
      * @return array
      */
-    public function phoneLogin($phoneNumber, $verfCode, $sessionId)
+    public function phoneLogin($phoneNumber, $verfCode, $sessionId = '')
     {
+        if (! $sessionId) {
+            $sessionId = $this->getSessionId();
+        }
+
         if (! $phoneNumber || ! $phoneNumber || ! $sessionId) {
             return [];
         }
@@ -87,6 +95,10 @@ class User extends Base\Client
     public function getUserInfo($sessionId)
     {
         if (! $sessionId) {
+            $sessionId = $this->getSessionId();
+        }
+
+        if (! $sessionId) {
             return [];
         }
 
@@ -95,6 +107,11 @@ class User extends Base\Client
         $data = $this->get('member', 'getmemberinfo');
 
         return json_decode($data, true);
+    }
+
+    private function getSessionId()
+    {
+        return \Yaf\Dispatcher::getInstance()->getRequest()->getCookie('S');
     }
 
 }
