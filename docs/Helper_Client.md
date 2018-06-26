@@ -7,11 +7,11 @@
 可以通过传参指定头信息，来获取经过CDN的请求客户端IP
 ```php
 /**
-    * @brief 获取客户端IP
-    *
-    * @param $from  string  指定header名的值作为客户端IP
-    *
-    * @return string
+ * @brief 获取客户端IP
+ *
+ * @param $from  string  指定header名的值作为客户端IP
+ *
+ * @return string
  */
 public static function getIp($from = null)
 ```
@@ -19,14 +19,21 @@ public static function getIp($from = null)
 ## getCity
 获取IP所属国家和城市
 
-PS: 依赖于GeoIP数据库，需要单独安装。安装路径：/usr/local/GeoIP/GeoLite2-City.mmdb
+> 依赖于GeoIP数据库和GeoIP代码库，需要单独安装。
+>
+> 代码：composer require geoip2/geoip2
+>
+> 数据库路径：/usr/local/GeoIP/GeoLite2-City.mmdb
+
+composer require geoip2/geoip2
+
 ```php
 /**
-    * @brief 使用GeoIp查询客户端国家、城市
-    *
-    * @param $ip    string  IP地址
-    *
-    * @return array
+ * @brief 使用GeoIp查询客户端国家、城市
+ *
+ * @param $ip    string  IP地址
+ *
+ * @return array
  */
 public static function getCity($ip)
 ```
@@ -37,12 +44,12 @@ public static function getCity($ip)
 如：netMatch('192.168.0.100', '192.168.0.0/24') = true
 ```php
 /**
-    * @brief 网络匹配,支持CIDR掩码
-    *
-    * @param $ip    string  IP
-    * @param $cidr  string  IP或CIDR
-    *
-    * @return boolean
+ * @brief 网络匹配,支持CIDR掩码
+ *
+ * @param $ip    string  IP
+ * @param $cidr  string  IP或CIDR
+ *
+ * @return boolean
  */
 public static function netMatch($ip, $cidr)
 ```

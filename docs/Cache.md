@@ -1,6 +1,7 @@
 ## 简介
 
 > Cache是基于<a href="http://docs.doctrine-project.org/projects/doctrine-common/en/latest/reference/caching.html" target="_blank">doctrine\cache</a>，获取连接实例的封装。
+>
 > 目前driver有redis，如有需要可以方便的扩展mc等其他driver
 
 ## 配置

@@ -7,9 +7,9 @@
 ## token
 ```php
 /**
-    * @brief 生成一个有效token，并存入session
-    *
-    * @return string
+ * @brief 生成一个有效token，并存入session
+ *
+ * @return string
  */
 public static function token()
 ```
@@ -17,11 +17,11 @@ public static function token()
 ## check
 ```php
 /**
-    * @brief 校验是否为有效token
-    *
-    * @param $token string 待检查token
-    *
-    * @return boolean
+ * @brief 校验是否为有效token
+ *
+ * @param $token string 待检查token
+ *
+ * @return boolean
  */
 public static function check($token)
 ```

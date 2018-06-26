@@ -5,6 +5,8 @@
 >
 > 视图层支持多种方式渲染，有默认、可选、Bootstrap和Bootstrap3。
 
+安装依赖：composer require pagerfanta/pagerfanta
+
 ## 使用方法
 ```php
 <?php
