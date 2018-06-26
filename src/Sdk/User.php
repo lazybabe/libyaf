@@ -92,7 +92,7 @@ class User extends Base\Client
      *
      * @return array
      */
-    public function getUserInfo($sessionId)
+    public function getUserInfo($sessionId = '')
     {
         if (! $sessionId) {
             $sessionId = $this->getSessionId();
