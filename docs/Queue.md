@@ -1,5 +1,9 @@
 ## 简介
-> Queue消息队列工具。已支持 <a href="http://kr.github.io/beanstalkd/" target="_blank">Beanstalkd</a>
+> Queue消息队列工具。已支持 <a href="http://kr.github.io/beanstalkd/" target="_blank">Beanstalkd</a> 、<a href="http://kafka.apache.org/" target="_blank">Kafka</a>
+
+依赖包：
+ - beanstalkd：composer require pda/pheanstalk
+ - kafka：composer require nmred/kafka-php
 
 ## 配置
 **application.ini**
@@ -31,6 +35,7 @@ $callback = function ($data) {
     //do something...
     return true;
 };
+//beanstalk传递第一个参数表示tube名称，kafka在配置中指定消费topics
 Queue::ins()->pull('queue_name', $callback);
 
 //产生延迟消息，10秒后加入队列（beanstalkd支持）

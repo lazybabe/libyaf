@@ -4,11 +4,11 @@
 ## vars
 ```php
 /**
-   * @brief 格式化输出变量
-   *
-   * @param ...$params
-   *
-   * @return void
-*/
+ * @brief 格式化输出变量
+ *
+ * @param ...$params
+ *
+ * @return void
+ */
 public static function vars(...$params)
 ```

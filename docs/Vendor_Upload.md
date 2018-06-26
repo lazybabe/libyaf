@@ -1,6 +1,8 @@
 ## 简介
 > codeguy/upload是一个简单的文件校验和上传组件
 
+安装依赖：composer require codeguy/upload
+
 ## 使用方法
 **前端**
 ```html
