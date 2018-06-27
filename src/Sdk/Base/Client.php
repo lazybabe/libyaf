@@ -150,6 +150,7 @@ class Client
                 $this->conf->logger->warning(
                     'Request time is too long.',
                     Arr::extract($statsInfo, [
+                        'url',
                         'total_time',
                         'namelookup_time',
                         'connect_time',
