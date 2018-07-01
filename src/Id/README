@@ -1,0 +1,5 @@
+application.ini
+
+id.default.driver           = 'snowflake'
+id.default.datacenterid     = 1
+; id.default.workerid         = 0
