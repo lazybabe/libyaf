@@ -114,6 +114,8 @@ class Kafka extends AbstractDriver implements DriverInterface
         $config->setMetadataBrokerList($this->config['brokers']);
         $config->setTopics($this->config['topics']);
         $config->setGroupId($this->config['group']);
+        $config->setOffsetReset('earliest');
+        $config->setConsumeMode(ConsumerConfig::CONSUME_BEFORE_COMMIT_OFFSET);;
         $config->setBrokerVersion($this->config['version']);
 
         if ($this->config['refresh_interval_ms']) {
