@@ -4,6 +4,7 @@
 依赖包：
  - beanstalkd：composer require pda/pheanstalk
  - kafka：composer require nmred/kafka-php
+ - rdkafka：install rdkafka extension `pecl install rdkafka`
 
 ## 配置
 **application.ini**
@@ -18,9 +19,13 @@ queue.kafka.driver          = 'kafka'
 queue.kafka.brokers         = 'kafka:9092'
 queue.kafka.topics          = 'test'
 queue.kafka.group           = 'test'
-queue.kafka.offset_reset    = 'earliest'
 queue.kafka.refresh_ms      = '10000'
 queue.kafka.version         = '1.0.0'
+
+queue.kafka.driver          = 'rdkafka'
+queue.kafka.brokers         = 'kafka:9092'
+queue.kafka.topics          = 'test'
+queue.kafka.group           = 'test'
 ```
 
 ## 如何使用
