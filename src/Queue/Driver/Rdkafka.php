@@ -103,6 +103,9 @@ class Rdkafka extends AbstractDriver implements DriverInterface
         }
 
         $topicConf = new TopicConf();
+        if ($this->config['offset_reset'] == 'earliest') {
+            $topicConf->set('auto.offset.reset', 'earliest');
+        }
 
         $conf = new Conf();
         $conf->set('metadata.broker.list', $this->config['brokers']);
