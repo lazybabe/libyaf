@@ -109,6 +109,24 @@ class User extends Base\Client
         return json_decode($data, true);
     }
 
+    /**
+     * @brief  通过UID获取用户信息
+     *
+     * @param int $uid 用户ID
+     *
+     * @return array
+     */
+    public function getUserInfoByUid($uid)
+    {
+        $params = [
+            'uid' => $uid,
+        ];
+
+        $data = $this->get('member', 'getmember', $params);
+
+        return json_decode($data, true);
+    }
+
     private function getSessionId()
     {
         return \Yaf\Dispatcher::getInstance()->getRequest()->getCookie('S');
