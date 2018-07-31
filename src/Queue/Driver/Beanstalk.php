@@ -63,7 +63,15 @@ class Beanstalk extends AbstractDriver implements DriverInterface
 
     public function size($name)
     {
-        return $this->instance->statsTube($name)->current_jobs_ready;
+        try {
+            return $this->instance->statsTube($name)->current_jobs_ready;
+        } catch (\Exception $e) {
+            if ($e->getMessage() == 'Server reported NOT_FOUND') {
+                return 0;
+            } else {
+                throw $e;
+            }
+        }
     }
 
 }
