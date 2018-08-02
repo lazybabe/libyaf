@@ -386,7 +386,7 @@ class Daemon
             try {
                 call_user_func($this->job, $this);
             } catch (\Exception $e) {
-                echo $e;
+                echo $e->getMessage();
                 exit(250);
             }
         } else {
@@ -430,7 +430,7 @@ class Daemon
             ) {
                 $errorMsg .= self::getErrorType($errors['type']) . " {$errors['message']} in {$errors['file']} on line {$errors['line']}";
             }
-            $this->log($error_msg, 'error');
+            $this->log($errorMsg, 'error');
         }
     }
 
