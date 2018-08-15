@@ -13,7 +13,7 @@ class Sms extends Base\Client
      *
      * @return array 执行结果
      */
-    public function send($number, $template, $context, $group)
+    public function send($number, $template, array $context = [], $group = 'betime')
     {
         $numbers = is_array($number) ? implode(',', $number) : $number;
 
