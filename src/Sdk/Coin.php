@@ -8,7 +8,7 @@ class Coin extends Base\Client
      *
      * @param array $terms 预警设置
      *
-     * @return array 执行结果
+     * @return array
      */
     public function termReg($terms)
     {
@@ -17,6 +17,28 @@ class Coin extends Base\Client
         ];
 
         $data = $this->request('POST', 'pre_warning_add', $params);
+
+        return json_decode($data, true);
+    }
+
+    /**
+     * @brief 获取币种信息
+     *
+     * @param mix $symbol 币名
+     *
+     * @return array
+     */
+    public function info($symbol)
+    {
+        if (is_array($symbol)) {
+            $symbol = implode(',', $symbol);
+        }
+
+        $params = [
+            'symbol' => $symbol,
+        ];
+
+        $data = $this->request('GET', 'coin_info', $params);
 
         return json_decode($data, true);
     }
