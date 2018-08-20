@@ -7,15 +7,13 @@ class Encrypt
 
     public static $instances = [];
 
-    private static $rand = MCRYPT_DEV_URANDOM;
-
     private $key;
 
-    private $mode;
+    private $method;
 
-    private $cipher;
+    private $options;
 
-    private $iv_size;
+    private $iv;
 
     public static function ins($group = null)
     {
@@ -35,83 +33,36 @@ class Encrypt
             throw new \Exception('Failed to load Encrypt group: '.$group);
         }
 
-        $key    = $config->key ? : null;
-        $mode   = $config->mode ? : MCRYPT_MODE_NOFB;
-        $cipher = $config->cipher ? : MCRYPT_RIJNDAEL_128;
+        $key        = $config->key ? : null;
+        $method     = $config->method ? : 'AES-256-ECB';
+        $options    = $config->options ? : 0;
+        $iv         = $config->iv ? : '';
 
         if (! $key) {
             throw new \Exception('Need encrypt key');
         }
 
-        Encrypt::$instances[$group] = new Encrypt($key, $mode, $cipher);
+        Encrypt::$instances[$group] = new Encrypt($key, $method, $options, $iv);
 
         return Encrypt::$instances[$group];
     }
 
-    private function __construct($key, $mode, $cipher)
+    private function __construct($key, $method, $options = null, $iv = null)
     {
-        $size = mcrypt_get_key_size($cipher, $mode);
-
-        if (isset($key[$size])) {
-            $key = substr($key, 0, $size);
-        } else if (version_compare(PHP_VERSION, '5.6.0', '>=')) {
-            $key = $this->normalizekey($key, $cipher, $mode);
-        }
-
-        $this->key    = $key;
-        $this->mode   = $mode;
-        $this->cipher = $cipher;
-
-        $this->iv_size = mcrypt_get_iv_size($this->cipher, $this->mode);
+        $this->key      = $key;
+        $this->method   = $method;
+        $this->options  = $options;
+        $this->iv       = $iv;
     }
 
     public function encode($data)
     {
-        $iv = $this->create_iv();
-
-        $data = mcrypt_encrypt($this->cipher, $this->key, $data, $this->mode, $iv);
-
-        return base64_encode($iv.$data);
+        return openssl_encrypt($data, $this->method, $this->key, $this->options, $this->iv);
     }
 
     public function decode($data)
     {
-        $data = base64_decode($data, true);
-        if (! $data) {
-            return false;
-        }
-
-        $iv = substr($data, 0, $this->iv_size);
-
-        if ($this->iv_size !== strlen($iv)) {
-            return false;
-        }
-
-        $data = substr($data, $this->iv_size);
-
-        return rtrim(mcrypt_decrypt($this->cipher, $this->key, $data, $this->mode, $iv), "\0");
-    }
-
-    private function create_iv()
-    {
-        if (Encrypt::$rand !== MCRYPT_DEV_URANDOM && Encrypt::$rand !== MCRYPT_DEV_RANDOM) {
-            Encrypt::$rand = MCRYPT_DEV_URANDOM;
-        }
-
-        return mcrypt_create_iv($this->iv_size, Encrypt::$rand);
-    }
-
-    private function normalizekey($key, $cipher, $mode)
-    {
-        $td = mcrypt_module_open($cipher, '', $mode, '');
-
-        foreach (mcrypt_enc_get_supported_key_sizes($td) as $supported) {
-            if (strlen($key) <= $supported) {
-                return str_pad($key, $supported, "\0");
-            }
-        }
-
-        return substr($key, 0, mcrypt_get_key_size($cipher, $mode));
+        return openssl_decrypt($data, $this->method, $this->key, $this->options, $this->iv);
     }
 
 }
