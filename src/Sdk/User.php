@@ -69,7 +69,7 @@ class User extends Base\Client
             $sessionId = $this->getSessionId();
         }
 
-        if (! $phoneNumber || ! $phoneNumber || ! $sessionId) {
+        if (! $phoneNumber || ! $verfCode || ! $sessionId) {
             return [];
         }
 
