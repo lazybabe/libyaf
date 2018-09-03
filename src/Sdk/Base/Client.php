@@ -5,8 +5,6 @@ use Libyaf\Helper\Arr;
 
 class Client
 {
-    const WARNING_COST_TIME = 0.5;
-
     protected $conf;
 
     protected $client;
@@ -23,13 +21,13 @@ class Client
 
     public function __construct(Conf $conf, $caller = null)
     {
-        //SDK配置
+        // SDK配置
         $this->conf     = $conf;
 
-        //HTTP Client
+        // HTTP Client
         $this->client   = new \GuzzleHttp\Client();
 
-        //caller
+        // caller
         $this->caller   = $caller ? : $this->caller;
     }
 
@@ -48,13 +46,13 @@ class Client
     }
 
     /**
-        * @brief 对资源发起POST请求
-        *
-        * @param string $resource   资源名
-        * @param stirng $operate    操作
-        * @param array  $params     请求参数
-        *
-        * @return string or null    响应内容
+     * @brief 对资源发起POST请求
+     *
+     * @param string $resource   资源名
+     * @param stirng $operate    操作
+     * @param array  $params     请求参数
+     *
+     * @return string or null    响应内容
      */
     public function post($resource, $operate, array $params = [])
     {
@@ -62,13 +60,13 @@ class Client
     }
 
     /**
-        * @brief 对资源发起POST请求
-        *
-        * @param string $method     请求方法
-        * @param stirng $requestUri 请求URI
-        * @param array  $params     请求参数
-        *
-        * @return string or null    响应内容
+     * @brief 对资源发起POST请求
+     *
+     * @param string $method     请求方法
+     * @param stirng $requestUri 请求URI
+     * @param array  $params     请求参数
+     *
+     * @return string or null    响应内容
      */
     public function request($method, $requestUri, array $params = [])
     {
@@ -77,13 +75,13 @@ class Client
             'timeout'   => $this->conf->timeout,
         ];
 
-        //毫秒超时
+        // 毫秒超时
         if ($this->conf->timeout < 1) {
-            //需要cURL版本大于7.16.2
+            // 需要cURL版本大于7.16.2
             $support = version_compare(curl_version()['version'], '7.16.2', '>=');
 
             if ($support) {
-                //此设置会让DNS无超时,建议libcurl使用c-ares做异步DNS
+                // 此设置会让DNS无超时,建议libcurl使用c-ares做异步DNS
                 $options['curl'] = [
                     CURLOPT_NOSIGNAL => 1,
                 ];
@@ -94,20 +92,20 @@ class Client
             }
         }
 
-        //设置代理
+        // 设置代理
         if ($this->conf->proxy) {
             $options['proxy'] = $this->conf->proxy;
         }
 
-        //设置认证信息
+        // 设置认证信息
         if ($this->conf->auth['user']) {
             $options['auth'] = array_values($this->conf->auth);
         }
 
-        //追加caller
+        // 追加caller
         $params['caller'] = $this->caller;
 
-        //配置请求参数
+        // 配置请求参数
         if ($params) {
             switch ($method) {
                 case 'GET':
@@ -123,17 +121,17 @@ class Client
             }
         }
 
-        //设置头信息
+        // 设置头信息
         if ($this->headers) {
             $options['headers'] = $this->headers;
         }
 
-        //设置cookie
+        // 设置cookie
         if ($this->cookies) {
             $options['cookies'] = $this->cookies;
         }
 
-        //传输细节
+        // 传输细节
         $options['on_stats'] = function ($stats) use ($method, $params) {
             //记录请求日志
             $requestInfo  = 'Request';
@@ -145,8 +143,8 @@ class Client
 
             $statsInfo = $stats->getHandlerStats();
 
-            //记录请求慢日志
-            if ($statsInfo['total_time'] > self::WARNING_COST_TIME) {
+            // 记录请求慢日志
+            if ($statsInfo['total_time'] > $this->conf->slowtime) {
                 $this->conf->logger->warning(
                     'Request time is too long.',
                     Arr::extract($statsInfo, [
@@ -162,14 +160,14 @@ class Client
         };
 
         try {
-            //开始请求
+            // 开始请求
             $response = $this->client->request($method, $requestUri, $options);
 
             if ($response->getStatusCode() === 200) {
-                //获取响应内容
+                // 获取响应内容
                 $data = $response->getBody()->getContents();
 
-                //响应内容记录DEBUG日志
+                // 响应内容记录DEBUG日志
                 $this->conf->logger->info('Response [content] '.$data);
 
                 return $data;
@@ -177,7 +175,7 @@ class Client
                 return null;
             }
         } catch (\Exception $e) {
-            //请求异常记录ERROR日志
+            // 请求异常记录ERROR日志
             $this->conf->logger->error($e->getMessage());
             return null;
         }
@@ -210,7 +208,7 @@ class Client
         if (! $cookies) {
             $this->cookies = [];
         } else {
-            //没传默认当前base_uri的域
+            // 没传默认当前base_uri的域
             if (! $domain) {
                 $domain = parse_url($this->conf->baseUri, PHP_URL_HOST);
             }

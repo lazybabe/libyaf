@@ -6,19 +6,22 @@ use Libyaf\Helper\Arr;
 
 class Conf
 {
-    //基础URI
+    // 基础URI
     public $baseUri = '';
 
-    //超时秒数,支持小数
+    // 超时秒数,支持小数,默认2秒
     public $timeout = 2.0;
 
-    //代理
+    // 慢日志时间,支持小数,默认0.5秒
+    public $slowtime = 0.5;
+
+    // 代理
     public $proxy;
 
-    //基础认证信息
+    // 基础认证信息
     public $auth = ['user'=>'', 'pass'=>''];
 
-    //日志实体
+    // 日志实体
     public $logger;
 
     public function __construct(array $options)
@@ -26,6 +29,7 @@ class Conf
         $options = [
             'baseUri'   => Arr::get($options, 'baseUri', $this->baseUri),
             'timeout'   => Arr::get($options, 'timeout', $this->timeout),
+            'slowtime'  => Arr::get($options, 'slowtime', $this->slowtime),
             'proxy'     => Arr::get($options, 'proxy', $this->proxy),
             'auth'      => Arr::get($options, 'auth', $this->auth),
             'logger'    => Arr::get($options, 'logger'),
@@ -35,6 +39,7 @@ class Conf
             V::arrayVal()
                 ->key('baseUri', V::url()->notEmpty())
                 ->key('timeout', V::floatVal()->min(0))
+                ->key('slowtime', V::floatVal()->min(0))
                 ->key('proxy', V::optional(V::url()))
                 ->key(
                     'auth',
@@ -48,6 +53,7 @@ class Conf
             $errors = array_filter($e->findMessages([
                 'baseUri'   => 'Required correct baseUri',
                 'timeout'   => 'Required correct timeout',
+                'slowtime'  => 'Required correct slowtime',
                 'proxy'     => 'Required correct proxy',
                 'auth'      => 'Required correct authuser',
                 'logger'    => 'Required a logger instance of psr\log',
