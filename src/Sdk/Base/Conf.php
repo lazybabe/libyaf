@@ -65,6 +65,7 @@ class Conf
 
         $this->baseUri  = $options['baseUri'];
         $this->timeout  = $options['timeout'];
+        $this->slowtime = $options['slowtime'];
         $this->proxy    = $options['proxy'];
         $this->auth     = $options['auth'];
         $this->logger   = $options['logger'];
