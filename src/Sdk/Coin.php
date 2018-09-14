@@ -43,6 +43,28 @@ class Coin extends Base\Client
         return json_decode($data, true);
     }
 
+    /**
+     * @brief 获取合约信息
+     *
+     * @param array $data 请求数据
+     *
+     * @return array
+     */
+    public function futrueInfo($data)
+    {
+        if (is_array($data)) {
+            $data = json_encode($data);
+        }
+
+        $params = [
+            'coin_infos' => $data,
+        ];
+
+        $data = $this->request('POST', 'ccnm', $params);
+
+        return json_decode($data, true);
+    }
+
 }
 
 
