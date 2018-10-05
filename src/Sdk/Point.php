@@ -38,6 +38,20 @@ class Point extends Base\Client
         return json_decode($data, true);
     }
 
+    public function increase($uid, $point, $symbol, $context)
+    {
+        $params = [
+            'uid'       => $uid,
+            'point'     => $point,
+            'symbol'    => $symbol,
+            'context'   => is_array($context) ? json_encode($context) : $context,
+        ];
+
+        $data = $this->post('user', 'increase', $params);
+
+        return json_decode($data, true);
+    }
+
 }
 
 
