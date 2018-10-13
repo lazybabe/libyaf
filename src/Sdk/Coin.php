@@ -65,6 +65,26 @@ class Coin extends Base\Client
         return json_decode($data, true);
     }
 
+    /**
+     * @brief 获取币种历史价格
+     *
+     * @param string    $symbol     币种标志
+     * @param int       $timestamp  时间戳
+     *
+     * @return array
+     */
+    public function historyPrice($symbol, $timestamp)
+    {
+        $params = [
+            'asset' => $symbol,
+            'ts'    => $timestamp,
+        ];
+
+        $data = $this->request('GET', 'history_coin_price', $params);
+
+        return json_decode($data, true);
+    }
+
 }
 
 
