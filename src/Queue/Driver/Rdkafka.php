@@ -90,7 +90,13 @@ class Rdkafka extends AbstractDriver implements DriverInterface
             return $this->producerInstance;
         }
 
-        $this->producerInstance = new Producer();
+        pcntl_sigprocmask(SIG_BLOCK, [SIGIO]);
+
+        $conf = new Conf();
+        $conf->set('internal.termination.signal', SIGIO);
+        $conf->set('socket.blocking.max.ms', 1);
+
+        $this->producerInstance = new Producer($conf);
         $this->producerInstance->addBrokers($this->config['brokers']);
 
         return $this->producerInstance;
