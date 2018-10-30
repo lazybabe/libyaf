@@ -3,9 +3,13 @@ namespace Libyaf\Sdk;
 
 class Wise extends Base\Client
 {
-    public function aiResult()
+    public function aiResult($params = [])
     {
-        $data = $this->get('ai', 'result');
+        if (is_array($params['symbol'])) {
+            $params['symbol'] = implode(',', $params['symbol']);
+        }
+
+        $data = $this->get('ai', 'result', $params);
 
         return json_decode($data, true);
     }
