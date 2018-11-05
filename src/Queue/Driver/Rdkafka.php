@@ -54,9 +54,6 @@ class Rdkafka extends AbstractDriver implements DriverInterface
 
                 call_user_func($callback, $data);
 
-                $this->consumerInstance()->commit();
-                $this->logger->info('[consume] success', ['data'=>$data]);
-
                 break;
             case \RD_KAFKA_RESP_ERR__PARTITION_EOF:
             case \RD_KAFKA_RESP_ERR__TIMED_OUT:
@@ -70,6 +67,9 @@ class Rdkafka extends AbstractDriver implements DriverInterface
 
             return false;
         }
+
+        $this->consumerInstance()->commit();
+        $this->logger->info('[consume] success', ['data'=>$data]);
 
         return true;
     }
