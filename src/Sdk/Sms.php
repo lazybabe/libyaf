@@ -47,20 +47,31 @@ class Sms extends Base\Client
 
         $params = $params + $extras;
 
-        if ($extras['alias']) {
-            if (is_string($extras['alias'])) {
-                $extras['alias'] = [$extras['alias']];
-            }
-            $params['alias'] = json_encode($extras['alias']);
-        }
+        $params['alias']    = $this->param2json($extras['alias']);
+        $params['tag']      = $this->param2json($extras['tag']);
+        $params['tag_and']  = $this->param2json($extras['tag_and']);
+        $params['tag_not']  = $this->param2json($extras['tag_not']);
+        $params['extras']   = $extras['extras'] ? json_encode($extras['extras']) : null;
 
-        if ($extras['extras'] && is_array($extras['extras'])) {
-            $params['extras'] = json_encode($extras['extras']);
-        }
+        $params = array_filter($params, function($val){
+            return ($val !== null);
+        });
 
         $data = $this->post('push', 'send', $params);
 
         return json_decode($data, true);
+    }
+
+    private function param2json($value)
+    {
+        if ($value) {
+            if (is_string($value)) {
+                $value = [$value];
+            }
+            return json_encode($value);
+        }
+
+        return null;
     }
 
 }
