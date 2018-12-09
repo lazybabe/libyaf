@@ -65,7 +65,7 @@ class Cookie {
     public static function salt($name, $value)
     {
         if (! Cookie::$salt) {
-            throw new Exception('A valid cookie salt is required. Please set Cookie::$salt.');
+            throw new \Exception('A valid cookie salt is required. Please set Cookie::$salt.');
         }
 
         $agent = isset($_SERVER['HTTP_USER_AGENT']) ? strtolower($_SERVER['HTTP_USER_AGENT']) : 'unknown';
