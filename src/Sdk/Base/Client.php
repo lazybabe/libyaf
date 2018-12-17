@@ -17,6 +17,8 @@ class Client
 
     protected $cookies  = [];
 
+    protected $body  = '';
+
     protected $caller   = 'unknown';
 
     public function __construct(Conf $conf, $caller = null)
@@ -112,7 +114,9 @@ class Client
                     $options['query'] = $params;
                     break;
                 case 'POST':
-                    $options['form_params'] = $params;
+                    if (is_null($this->body)) {
+                        $options['form_params'] = $params;
+                    }
                     break;
                 case 'PUT':
                     $options['body'] = http_build_query($params);
@@ -129,6 +133,11 @@ class Client
         // 设置cookie
         if ($this->cookies) {
             $options['cookies'] = $this->cookies;
+        }
+
+        // 设置请求body
+        if ($this->body) {
+            $options['body'] = $this->body;
         }
 
         // 传输细节
@@ -215,6 +224,13 @@ class Client
 
             $this->cookies = \GuzzleHttp\Cookie\CookieJar::fromArray($cookies, $domain);
         }
+
+        return $this;
+    }
+
+    public function setBody(string $body)
+    {
+        $this->body = $body;
 
         return $this;
     }
