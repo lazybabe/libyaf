@@ -114,7 +114,7 @@ class Client
                     $options['query'] = $params;
                     break;
                 case 'POST':
-                    if (is_null($this->body)) {
+                    if (in_array($this->body, [null, ''], true)) {
                         $options['form_params'] = $params;
                     }
                     break;
