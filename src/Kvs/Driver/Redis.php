@@ -68,13 +68,13 @@ class Redis extends AbstractDriver
         }
     }
 
-    public function __call($name, ...$arguments)
+    public function __call($name, $arguments)
     {
         if (! method_exists($this->instance, $name)) {
             throw new Exception("phpredis does not have a method '$name'");
         }
 
-        return call_user_func_array([$this->instance, $name], ...$arguments);
+        return call_user_func_array([$this->instance, $name], $arguments);
     }
 
     public function connected()

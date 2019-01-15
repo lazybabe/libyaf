@@ -1,6 +1,7 @@
 <?php
 namespace Libyaf\Weixin;
 
+use Libyaf\Logkit\Logger;
 use Libyaf\Cache\Cache;
 
 /**
@@ -1649,8 +1650,10 @@ class Wechat
                 $authname = 'wechat_access_token'.$this->appid;
                 $this->removeCache($authname);
             }
+            Logger::ins('weixin')->info('http_get', ['url'=>$url, 'content'=>$sContent]);
             return $sContent;
         } else {
+            Logger::ins('weixin')->notice('http_get', ['url'=>$url, 'info'=>$aStatus]);
             return false;
         }
     }
