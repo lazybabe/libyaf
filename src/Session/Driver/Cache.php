@@ -83,7 +83,7 @@ class Cache extends Session
 
     protected function _destroy()
     {
-        return $this->cache->delete($this->updateid);
+        return $this->updateid ? $this->cache->delete($this->updateid) : true;
     }
 
 }
