@@ -19,8 +19,6 @@ class Client
 
     protected $body  = '';
 
-    protected $caller   = 'unknown';
-
     public function __construct(Conf $conf, $caller = null)
     {
         // SDK配置
@@ -30,7 +28,7 @@ class Client
         $this->client   = new \GuzzleHttp\Client();
 
         // caller
-        $this->caller   = $caller ? : $this->caller;
+        $this->caller   = $caller;
     }
 
     /**
@@ -105,7 +103,9 @@ class Client
         }
 
         // 追加caller
-        $params['caller'] = $this->caller;
+        if ($this->caller) {
+            $params['caller'] = $this->caller;
+        }
 
         // 配置请求参数
         if ($params) {
