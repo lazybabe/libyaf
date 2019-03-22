@@ -31,7 +31,7 @@ class Redis extends AbstractDriver
     {
         $this->instance = new \Redis();
 
-        $this->logger->info('redis connect.', $this->config->toArray());
+        $this->logger->debug('redis connect.', $this->config->toArray());
 
         if (isset($this->config->persistent) && $this->config->persistent) {
             $this->instance->pconnect($this->config->host, $this->config->port, $this->config->timeout);
