@@ -10,10 +10,11 @@ class Sms extends Base\Client
      * @param string $template   模板名称如captcha
      * @param array  $context    模板上下文变量
      * @param string $group      来源如betime
+     * @param string $ip         来源IP
      *
      * @return array 执行结果
      */
-    public function send($number, $template, array $context = [], $group = 'betime')
+    public function send($number, $template, array $context = [], $group = 'betime', $ip = '')
     {
         $numbers = is_array($number) ? implode(',', $number) : $number;
 
@@ -22,6 +23,7 @@ class Sms extends Base\Client
             'template'  => $template,
             'context'   => json_encode($context),
             'group'     => $group,
+            'ip'        => $ip,
         ];
 
         $data = $this->post('message', 'send', $params);
